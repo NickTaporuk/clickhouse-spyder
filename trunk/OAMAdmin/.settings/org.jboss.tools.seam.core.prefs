@@ -1,0 +1,17 @@
+#Tue Apr 27 13:15:44 CEST 2010
+action.package=org.domain.oamadmin.session
+action.sources=/OAMAdmin/src/hot
+eclipse.preferences.version=1
+model.package=org.domain.oamadmin.entity
+model.sources=/OAMAdmin/src/main
+seam.ejb.project=OAMAdmin
+seam.project.connection.profile=MySQL Local
+seam.project.deployment.type=war
+seam.project.settings.version=1.1
+seam.project.web.root.folder=/OAMAdmin/WebContent
+seam.runtime.name=jboss-seam-2.2.0.GA
+seam.settings.changed.by.user=true
+seam.test.creating=false
+seam.test.project=OAMAdmin
+test.package=org.domain.oamadmin.test
+test.sources=/OAMAdmin/src/hot

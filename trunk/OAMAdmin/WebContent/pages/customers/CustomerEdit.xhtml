@@ -1,0 +1,101 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="../../layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="customer" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{customerHome.managed ? 'Edit' : 'Add'} Customer</f:facet>
+
+
+
+
+            <s:decorate id="companyField" template="../../layout/edit.xhtml">
+                <ui:define name="label">Company</ui:define>
+                <h:inputTextarea id="company"
+                               cols="80"
+                               rows="3"
+                           required="true"
+                              value="#{customerHome.instance.company}"/>
+            </s:decorate>
+
+
+            <s:decorate id="companyUrlField" template="../../layout/edit.xhtml">
+                <ui:define name="label">Company url</ui:define>
+                <h:inputTextarea id="companyUrl"
+                               cols="80"
+                               rows="3"
+                              value="#{customerHome.instance.companyUrl}"/>
+            </s:decorate>
+
+
+            <s:decorate id="emailField" template="../../layout/edit.xhtml">
+                <ui:define name="label">Email</ui:define>
+                <h:inputTextarea id="email"
+                               cols="80"
+                               rows="3"
+                              value="#{customerHome.instance.email}"/>
+            </s:decorate>
+
+
+            <s:decorate id="phoneField" template="../../layout/edit.xhtml">
+                <ui:define name="label">Phone</ui:define>
+                <h:inputTextarea id="phone"
+                               cols="80"
+                               rows="3"
+                              value="#{customerHome.instance.phone}"/>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{customerHome.persist}"
+                       disabled="#{!customerHome.wired}"
+                       rendered="#{!customerHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{customerHome.update}"
+                       rendered="#{customerHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{customerHome.remove}"
+                      immediate="true"
+                       rendered="#{customerHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/pages/customers/Customer.xhtml"
+                rendered="#{customerHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/pages/customers/#{empty customerFrom ? 'CustomerList' : customerFrom}.xhtml"
+                rendered="#{!customerHome.managed}"/>
+
+        </div>
+    </h:form>
+
+</ui:define>
+
+</ui:composition>
