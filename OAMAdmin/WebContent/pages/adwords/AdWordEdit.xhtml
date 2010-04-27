@@ -1,0 +1,61 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" template="../../layout/template.xhtml">
+
+	<ui:define name="body">
+
+		<h:form id="adWord" styleClass="edit">
+
+			<rich:panel>
+				<f:facet name="header">#{adWordHome.managed ? 'Edit' : 'Add'} Ad word</f:facet>
+
+				<s:decorate id="activeField" template="../../layout/edit.xhtml">
+					<ui:define name="label">Active</ui:define>
+					<h:selectBooleanCheckbox id="active" required="true"
+						value="#{adWordHome.instance.active}" />
+				</s:decorate>
+
+				<s:decorate id="adWordField" template="../../layout/edit.xhtml">
+					<ui:define name="label">Ad word</ui:define>
+					<h:inputTextarea id="adWord" cols="80" rows="1" required="true"
+						value="#{adWordHome.instance.adWord}" />
+				</s:decorate>
+
+				<s:decorate id="gDomainField" template="../../layout/edit.xhtml">
+					<ui:define name="label">Google domain</ui:define>
+					<h:selectOneListbox value="#{adWordHome.instance.gDomain}">
+						<f:selectItem 
+							itemValue="http://www.google.co.hu"
+							itemLabel="Hungarian">
+						</f:selectItem>
+					</h:selectOneListbox>
+				</s:decorate>
+
+				<div style="clear: both"><span class="required">*</span>
+				required fields</div>
+
+			</rich:panel>
+
+			<div class="actionButtons"><h:commandButton id="save"
+				value="Save" action="#{adWordHome.persist}"
+				disabled="#{!adWordHome.wired}" rendered="#{!adWordHome.managed}" />
+			<h:commandButton id="update" value="Save"
+				action="#{adWordHome.update}" rendered="#{adWordHome.managed}" /> <h:commandButton
+				id="delete" value="Delete" action="#{adWordHome.remove}"
+				immediate="true" rendered="#{adWordHome.managed}" /> <s:button
+				id="cancelEdit" value="Cancel" propagation="end"
+				view="/pages/adwords/AdWord.xhtml" rendered="#{adWordHome.managed}" /> <s:button
+				id="cancelAdd" value="Cancel" propagation="end"
+				view="/pages/adwords/#{empty adWordFrom ? 'AdWordList' : adWordFrom}.xhtml"
+				rendered="#{!adWordHome.managed}" /></div>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
