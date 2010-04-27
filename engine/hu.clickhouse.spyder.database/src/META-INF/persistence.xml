@@ -1,0 +1,45 @@
+<persistence
+	version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	<persistence-unit
+		name="hu.clickhouse.spyder.jpa">
+		<class>hu.clickhouse.spyder.entities.Customer</class>
+		<class>hu.clickhouse.spyder.entities.AdWord</class>
+		<class>hu.clickhouse.spyder.entities.HourInfo</class>
+		<class>hu.clickhouse.spyder.entities.SearchResult</class>
+		<properties>
+
+			<!-- Connection -->
+			<property
+				name="eclipselink.jdbc.password"
+				value="XqYmUUqntmrXLPt2" />
+			<property
+				name="eclipselink.jdbc.user"
+				value="spyder" />
+			<property
+				name="eclipselink.jdbc.driver"
+				value="com.mysql.jdbc.Driver" />
+			<property
+				name="eclipselink.jdbc.url"
+				value="jdbc:mysql://87.229.45.176:3306/spyder" />
+
+			<!-- Logging Settings -->
+			<property name="eclipselink.logging.level" value="OFF" />
+			<property name="eclipselink.logging.thread" value="false" />
+			<property name="eclipselink.logging.session" value="false" />
+			<property name="eclipselink.logging.exceptions" value="true" />
+			<property name="eclipselink.logging.timestamp" value="false"/>  
+
+			<!-- Database Schema Creation -->
+			<property
+				name="eclipselink.ddl-generation"
+				value="create-tables" />
+			<property
+				name="eclipselink.ddl-generation.output-mode"
+				value="database" />
+				
+		</properties>
+	</persistence-unit>
+</persistence>
